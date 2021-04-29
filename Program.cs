@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LambdaExpressionProblems
+namespace LambdaExpressionProblem
 {
     class Program
     {
@@ -18,29 +18,32 @@ namespace LambdaExpressionProblems
 
             //method call
             AddingPersonDetails(list);
-
+            RetrieveTop2(list);
             Console.ReadLine();
         }
 
         //UC1 person management
         public static void AddingPersonDetails(List<Person> personList) //creating method
         {
-            personList.Add(new Person() { SSN = 1, Age = 16, Name = "Himanshu", Address = "Pune" });
-            personList.Add(new Person() { SSN = 2, Age = 18, Name = "Kartik", Address = "Pune" });
+            personList.Add(new Person() { SSN = 1, Age = 24, Name = "Himanshu", Address = "Pune" });
+            personList.Add(new Person() { SSN = 2, Age = 30, Name = "Kartik", Address = "Pune" });
             personList.Add(new Person() { SSN = 3, Age = 25, Name = "Krunal", Address = "Bangalore" });
-            personList.Add(new Person() { SSN = 5, Age = 75, Name = "Harshpal", Address = "pune" });
-            personList.Add(new Person() { SSN = 6, Age = 86, Name = "Vishal", Address = "Nainital" });
-            personList.Add(new Person() { SSN = 7, Age = 15, Name = "Priyanka", Address = "Dehradun" });
-            IterateOverList(personList);
-        }
-        public static void IterateOverList(List<Person> personlist)
-        {
-            foreach (Person person in personlist)
-            {
-                Console.WriteLine("Age\t" + person.Age + "\t" + "Name\t" + person.Name + "\t" + "Address\t" + person.Address);
-            }
+            personList.Add(new Person() { SSN = 4, Age = 75, Name = "Harshpal", Address = "pune" });
+            personList.Add(new Person() { SSN = 5, Age = 86, Name = "Vishal", Address = "Nainital" });
+            personList.Add(new Person() { SSN = 6, Age = 15, Name = "Priyanka", Address = "Dehradun" });
         }
 
+
+        //UC2 Retrieve top two age less than 60
+        public static void RetrieveTop2(List<Person> list)
+        {
+            var result = list.FindAll(x => x.Age < 60).OrderBy(x => x.Age).Take(2);
+            foreach (Person person in result)
+            {
+                Console.WriteLine("Age\t" + person.Age + "Name\t" + person.Name + "\t" + "Address\t" + person.Address);
+
+            }
+        }
     }
     public class Person
     {
@@ -52,4 +55,3 @@ namespace LambdaExpressionProblems
 
     }
 }
-
