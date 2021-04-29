@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LambdaExpressionProblem
+namespace LambdaExpressionProblems
 {
     class Program
     {
@@ -18,7 +18,7 @@ namespace LambdaExpressionProblem
 
             //method call
             AddingPersonDetails(list);
-            RetrieveTop2(list);
+            Retrieve(list);
             Console.ReadLine();
         }
 
@@ -31,17 +31,25 @@ namespace LambdaExpressionProblem
             personList.Add(new Person() { SSN = 4, Age = 75, Name = "Harshpal", Address = "pune" });
             personList.Add(new Person() { SSN = 5, Age = 86, Name = "Vishal", Address = "Nainital" });
             personList.Add(new Person() { SSN = 6, Age = 15, Name = "Priyanka", Address = "Dehradun" });
+
         }
 
 
-        //UC2 Retrieve top two age less than 60
-        public static void RetrieveTop2(List<Person> list)
+        //UC3 Retrieve age between 13 to 18 
+        public static void Retrieve(List<Person> list)
         {
-            var result = list.FindAll(x => x.Age < 60).OrderBy(x => x.Age).Take(2);
-            foreach (Person person in result)
+            try
             {
-                Console.WriteLine("Age\t" + person.Age + "Name\t" + person.Name + "\t" + "Address\t" + person.Address);
+                var result = list.FindAll(x => x.Age > 13 && x.Age < 18);
+                foreach (Person person in result)
+                {
+                    Console.WriteLine("Age\t" + person.Age + "Name\t" + person.Name + "\t" + "Address\t" + person.Address);
 
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
             }
         }
     }
