@@ -18,7 +18,7 @@ namespace LambdaExpressionProblem
 
             //method call
             AddingPersonDetails(list);
-            SearchPerson(list);
+            SkipLessThan60(list);
             Console.ReadLine();
         }
 
@@ -33,24 +33,17 @@ namespace LambdaExpressionProblem
             personList.Add(new Person() { SSN = 6, Age = 15, Name = "Priyanka", Address = "Dehradun" });
 
         }
-
-        //UC5 Check for specific name present in list or not
-        public static void SearchPerson(List<Person> list)
+        //UC6 skip less than 60
+        public static void SkipLessThan60(List<Person> list)
         {
             try
             {
-                var person = list.Where(x => x.Name == "Himanshu").First();
-                if (person != null)
+                var result = list.FindAll(x => x.Age > 60);
+                foreach (Person person in result)
                 {
-                    Console.WriteLine("person present");
 
                     Console.WriteLine("Age\t" + person.Age + "Name\t" + person.Name + "\t" + "Address\t" + person.Address);
                 }
-                else
-                {
-                    Console.WriteLine("person not exist in a list");
-                }
-
             }
             catch (Exception ex)
             {
@@ -68,3 +61,7 @@ namespace LambdaExpressionProblem
 
     }
 }
+
+
+
+
