@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LambdaExpressionProblems
+namespace LambdaExpressionProblem
 {
     class Program
     {
@@ -18,7 +18,7 @@ namespace LambdaExpressionProblems
 
             //method call
             AddingPersonDetails(list);
-            Retrieve(list);
+            FindAvgAgeForAll(list);
             Console.ReadLine();
         }
 
@@ -34,18 +34,15 @@ namespace LambdaExpressionProblems
 
         }
 
-
-        //UC3 Retrieve age between 13 to 18 
-        public static void Retrieve(List<Person> list)
+        //UC4 Retrieve average age in the list
+        public static void FindAvgAgeForAll(List<Person> list)
         {
             try
             {
-                var result = list.FindAll(x => x.Age > 13 && x.Age < 18);
-                foreach (Person person in result)
-                {
-                    Console.WriteLine("Age\t" + person.Age + "Name\t" + person.Name + "\t" + "Address\t" + person.Address);
+                var result = list.Average(x => x.Age);
 
-                }
+                Console.WriteLine("Average age among all persons\t" + result);
+
             }
             catch (Exception ex)
             {
@@ -63,3 +60,5 @@ namespace LambdaExpressionProblems
 
     }
 }
+
+
